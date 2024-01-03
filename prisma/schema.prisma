@@ -1,0 +1,129 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int             @id @default(autoincrement())
+  email         String          @unique @db.VarChar(35)
+  name          String          @db.VarChar(32)
+  password      String          @db.VarChar(128)
+  createdAt     DateTime        @default(now())
+  posts         BlogPost[]
+  Comments      BlogComments[]
+  Follower      Follower[]
+  Question      Question[]
+  QuestionReply QuestionReply[]
+}
+
+model BlogPost {
+  id          Int            @id @default(autoincrement())
+  title       String         @db.VarChar(128)
+  body        String         @db.VarChar(8192)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  coverImage  String?        @db.VarChar(160)
+  published   Boolean        @default(false)
+  author      User?          @relation(fields: [authorId], references: [id])
+  authorId    Int?
+  likes       Likes[]
+  dislikes    Dislikes[]
+  Comments    BlogComments[]
+  ReportBlogs ReportBlogs[]
+}
+
+model BlogComments {
+  id        Int       @id @default(autoincrement())
+  body      String    @db.VarChar(8192)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  author    User?     @relation(fields: [authorId], references: [id])
+  authorId  Int?
+  post      BlogPost? @relation(fields: [postId], references: [id])
+  postId    Int?
+}
+
+model Follower {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  follower   User?    @relation(fields: [followerId], references: [id])
+  followerId Int?
+}
+
+model Likes {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  post      BlogPost? @relation(fields: [postId], references: [id])
+  postId    Int?
+}
+
+model Dislikes {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  post      BlogPost? @relation(fields: [postId], references: [id])
+  postId    Int?
+}
+
+model Question {
+  id               Int                @id @default(autoincrement())
+  title            String             @db.VarChar(128)
+  body             String             @db.VarChar(8192)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  author           User?              @relation(fields: [authorId], references: [id])
+  authorId         Int?
+  QuestionReply    QuestionReply[]
+  QuestionUpvote   QuestionUpvote[]
+  QuestionDownvote QuestionDownvote[]
+  ReportQuestions  ReportQuestions[]
+}
+
+model QuestionReply {
+  id         Int       @id @default(autoincrement())
+  body       String    @db.VarChar(8192)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  author     User?     @relation(fields: [authorId], references: [id])
+  authorId   Int?
+  question   Question? @relation(fields: [questionId], references: [id])
+  questionId Int?
+}
+
+model QuestionUpvote {
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  question   Question? @relation(fields: [questionId], references: [id])
+  questionId Int?
+}
+
+model QuestionDownvote {
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  question   Question? @relation(fields: [questionId], references: [id])
+  questionId Int?
+}
+
+model ReportBlogs {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  post      BlogPost? @relation(fields: [postId], references: [id])
+  postId    Int?
+}
+
+model ReportQuestions {
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  question   Question? @relation(fields: [questionId], references: [id])
+  questionId Int?
+}
