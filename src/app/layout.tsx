@@ -4,9 +4,7 @@ import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 import { ThemeProvider } from "@/components/theme-provider"
-import { EdgeStoreProvider } from '../lib/edgestore';
-import Providers from './providers';
-
+import { EdgeStoreProvider } from '../lib/edgestore'
 export const metadata: Metadata = {
   title: {
     template: '%s | Next.js Blog Example with Markdown',
@@ -22,10 +20,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+          >
           <Navbar />
           <EdgeStoreProvider>
-          <Providers />
             {children}
           </EdgeStoreProvider>
         </ThemeProvider>

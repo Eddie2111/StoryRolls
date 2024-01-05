@@ -1,7 +1,0 @@
-'use client';
-import React from 'react';
-import NextNProgress from 'nextjs-progressbar';
-
-export default function Providers () {
-  return <NextNProgress color="#ABFE13" startPosition={0.3} stopDelayMs={200} height={3} showOnShallow={true} />;
-}

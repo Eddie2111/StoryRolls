@@ -7,54 +7,41 @@ import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import {Textarea} from "@/components/ui/textarea"
+import Editor from './jodit'
 
-import Tiptap from './tiptap';
-
-const FormSchema = z.object({
-    title: z.string().min(1).max(100),
-    body: z.string().min(1).max(1000),
-    description: z.string().min(1).max(50000),
-    tags: z.string().min(4).max(100),
-    category: z.string().min(1).max(100),
-    coverImage: z.string().min(1).max(100),
-});
+const formSchema = z.object({
+    title: z.string().min(1, { message: "Title is required" }),
+    body: z.string().min(1, { message: "Body is required" }).max(10000, { message: "Body must be less than 10000 characters" }),
+    tags: z.string().min(1, { message: "Tags are required" }),
+    category: z.string().min(1, { message: "Category is required" }),
+  })
 
 export default function BlogForm(){
-    const [imageFile, setImageFile] = React.useState<File | null>(null);
-    const form = useForm<z.infer<typeof FormSchema>>({
-        mode: "onChange",
-        resolver: zodResolver(FormSchema),
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
         defaultValues: {
             title: "",
             body: "",
-            description: "",
             tags: "",
             category: "",
-            coverImage: []
         },
-      })
-    function onSubmit(values: z.infer<typeof FormSchema>) {
-        const formdata = new FormData();
-        formdata.append("title", values.title);
-        formdata.append("body", values.body);
-        formdata.append("description", values.description);
-        formdata.append("tags", values.tags);
-        formdata.append("category", values.category);
-        formdata.append("coverImage", values.coverImage);
-        console.log(formdata, values)
-    }
+    })
+    function onSubmit(values: z.infer<typeof formSchema>) {
+        
+        console.log(values)
+      }
     return(
         <Form {...form}>
-            <h1 className="text-3xl text-center font-bold">Create a blog</h1>
+        <h1 className="text-3xl text-center font-bold">Create a blog</h1>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
+        <FormField
             control={form.control}
             name="title"
             render={({ field }) => (
                 <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                    <Input placeholder="Once there was a" {...field} />
+                    <Input placeholder="Once there was a ..." {...field} />
                 </FormControl>
                 <FormDescription>
                     This is your blog title. It should be short and descriptive.
@@ -67,7 +54,6 @@ export default function BlogForm(){
             <FormField
                 control={form.control}
                 name="tags"
-                className="w-full"
                 render={({ field }) => (
                 <FormItem>
                     <FormLabel>Tags</FormLabel>
@@ -84,7 +70,6 @@ export default function BlogForm(){
             <FormField
                 control={form.control}
                 name="category"
-                className="w-1/2"
                 render={({ field }) => (
                 <FormItem>
                     <FormLabel>Category</FormLabel>
@@ -100,38 +85,25 @@ export default function BlogForm(){
             />
             </div>
             <FormField
-                control={form.control}
-                name="coverImage"
-                render={({ field }) => (
-                <FormItem>
-                    <FormLabel>Cover Image</FormLabel>
-                    <FormControl>
-                    <Input placeholder="https://www.google.com" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                    This is your blog cover image. It should be short and descriptive.
-                    </FormDescription>
-                    <FormMessage />
-                </FormItem>
-                )}
-            />
-            <FormField
-                control={form.control}
-                name="body"
-                render={({field}) => (
-                    <FormItem>
-                        <FormLabel>Blog</FormLabel>
-                        <FormControl>
-                            <div>
-                                <Tiptap description={field.value} onChange={(richText: string) => field.onChange(richText)}/>
-                            </div>
-                        </FormControl>
-                        <FormMessage/>
-                    </FormItem>
-                )}
-            />
-            <Button type="submit">Submit</Button>
+            control={form.control}
+            name="body"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Blog Body</FormLabel>
+                <FormControl>
+                    <Editor placeholder="Start typing..." {...field} />
+                </FormControl>
+                <FormDescription>
+                    This is your blog body. It should be long and descriptive. You can use markdown to format your blog.
+                    Also you can insert image links using the image icon on the toolbar.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit">Submit</Button>
         </form>
       </Form>
     )
 }
+        

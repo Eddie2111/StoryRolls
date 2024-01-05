@@ -2,7 +2,7 @@ import Link from "next/link"
 import { NavigationMenuLink, NavigationMenuList, NavigationMenu } from "@/components/ui/navigation-menu/navigation"
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar"
 import { DropdownMenuTrigger, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
-
+import { ModeToggle } from "@/components/ui/layout/theme-toggle"
 export default function Component() {
   return (
     <header className="flex flex-row h-20 w-full items-center px-4 md:px-6 justify-between">
@@ -39,6 +39,7 @@ export default function Component() {
         </NavigationMenuList>
       </NavigationMenu>
       <div className="ml-auto flex gap-2">
+        <ModeToggle />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Avatar className="h-9 w-9">
