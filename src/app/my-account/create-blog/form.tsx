@@ -27,7 +27,6 @@ export default function BlogForm(){
         },
     })
     function onSubmit(values: z.infer<typeof formSchema>) {
-        
         console.log(values)
       }
     return(

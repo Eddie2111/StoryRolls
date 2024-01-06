@@ -8,11 +8,12 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique @db.VarChar(35)
-  name      String   @db.VarChar(32)
-  password  String   @db.VarChar(128)
-  createdAt DateTime @default(now())
+  id         Int        @id @default(autoincrement())
+  email      String     @unique @db.VarChar(35)
+  name       String     @db.VarChar(32)
+  password   String     @db.VarChar(128)
+  createdAt  DateTime   @default(now())
+  blogsPosts BlogPost[]
 }
 
 model BlogPost {
@@ -24,7 +25,8 @@ model BlogPost {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   published Boolean  @default(false)
-  authorId  Int?
+  userID    Int?
+  author    User?    @relation(fields: [userID], references: [id])
 }
 
 model BlogComments {
@@ -102,3 +104,12 @@ model ReportQuestions {
   updatedAt  DateTime @updatedAt
   questionId Int?
 }
+
+// pull the schema from db: npx prisma db pull
+// push the schema to db: npx prisma db push
+// format the schema file: npx prisma format
+// generate the prisma client: npx prisma generate
+// migrate the schema: npx prisma migrate dev --name init
+// reset the db: npx prisma migrate reset
+// seed the db: npx prisma db seed --preview-feature
+// reset the db and seed: npx prisma migrate reset --preview-feature && npx prisma db seed --preview-feature
