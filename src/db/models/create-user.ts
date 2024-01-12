@@ -2,19 +2,21 @@
 import Prisma from '@/lib/prisma'
 import {UserProps} from '@/types/user.d'
 
-async function createUser(email, name, password) {
+async function createUser({email,name,password}:UserProps) {
     try {
-        const newUser = await prisma.user.create({
+        const newUser = await Prisma.user.create({
             data: {
                 email: email,
                 name: name,
                 password: password,
             },
         });
-        console.log('New user created:', newUser);
         return true
     } catch (error) {
         console.log('Error creating user:', error);
         return false
     }
+}
+export {
+    createUser
 }
