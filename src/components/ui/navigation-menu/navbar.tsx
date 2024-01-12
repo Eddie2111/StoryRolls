@@ -5,9 +5,9 @@ import { DropdownMenuTrigger, DropdownMenuItem, DropdownMenuSeparator, DropdownM
 import { ModeToggle } from "@/components/ui/layout/theme-toggle"
 export default function Component() {
   return (
-    <header className="flex flex-row h-20 w-full items-center px-4 md:px-6 justify-between">
-      <Link className="mr-6 hidden lg:flex" href="#">
-        <FlagIcon className="h-6 w-6" />
+    <header className="flex flex-row h-20 w-full items-center px-4 md:px-6 justify-between bg-slate-800">
+      <Link className="mr-6 hidden lg:flex" href="/">
+        <FlagIcon className="h-6 w-6 border-1 border-white" />
         <span className="sr-only">Logo</span>
       </Link>
       <NavigationMenu className="hidden lg:flex">
@@ -15,7 +15,7 @@ export default function Component() {
           <NavigationMenuLink asChild>
             <Link
               className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-              href="#"
+              href="/blogs"
             >
               Blogs
             </Link>
@@ -23,7 +23,7 @@ export default function Component() {
           <NavigationMenuLink asChild>
             <Link
               className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-              href="#"
+              href="/categories"
             >
               Categories
             </Link>
@@ -62,7 +62,7 @@ export default function Component() {
   )
 }
 
-function FlagIcon(props) {
+function FlagIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg
       {...props}
@@ -75,6 +75,7 @@ function FlagIcon(props) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className='text-white'
     >
       <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
       <line x1="4" x2="4" y1="22" y2="15" />

@@ -4,19 +4,17 @@ import {BlogPostProps} from '@/types/BlogPost.d'
 
 async function createBlogPost({title, body, userID, tags, category}: BlogPostProps) {
     try {
-      const newBlogPost = await prisma.blogPost.create({
+      const newBlogPost = await Prisma.blogPost.create({
         data: {
-          title: title,
-          body: body,
-          userID: userID,
-          tags: tags,
-          category: category,
+          title: title || 'Untitled',
+          body: body || 'Untitled',
+          userID: userID || 1,
+          tags: tags || 'Untitled',
+          category: category || 'Untitled',
         },
       });
       console.log('New blog post created:', newBlogPost);
     } catch (error) {
       console.error('Error creating blog post:', error);
-    } finally {
-      await prisma.$disconnect();
     }
   }

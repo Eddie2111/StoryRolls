@@ -1,5 +1,4 @@
 import Form from './form';
-import Tiptap from './tiptap'
 
 export default function Page():JSX.Element{
     return(

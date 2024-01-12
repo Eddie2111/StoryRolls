@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
@@ -28,6 +28,8 @@ model BlogPost {
   published Boolean  @default(false)
   userID    Int?
   author    User?    @relation(fields: [userID], references: [id])
+
+  @@index([userID])
 }
 
 model BlogComments {

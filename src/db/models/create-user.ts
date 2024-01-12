@@ -6,9 +6,9 @@ async function createUser({email,name,password}:UserProps) {
     try {
         const newUser = await Prisma.user.create({
             data: {
-                email: email,
-                name: name,
-                password: password,
+                email: email || 'Untitled',
+                name: name || 'Untitled',
+                password: password || 'Untitled',
             },
         });
         return true

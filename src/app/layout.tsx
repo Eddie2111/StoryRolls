@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
 import { ThemeProvider } from "@/components/theme-provider"
-import { EdgeStoreProvider } from '../lib/edgestore'
+// import { EdgeStoreProvider } from '../lib/edgestore'
 import { Toaster } from 'sonner';
 
 import Navbar from "@/components/ui/navigation-menu/navbar"
@@ -30,9 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             attribute="class"
             defaultTheme="light">
           <Navbar />
-          <EdgeStoreProvider>
             {children}
-          </EdgeStoreProvider>
         </ThemeProvider>
       </body>
     </html>

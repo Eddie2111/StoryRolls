@@ -7,21 +7,25 @@ import argon2 from 'argon2'
 import { cookies } from 'next/headers'
 import jwt from 'jsonwebtoken'
 
-async function LoginUser(data: UserProps):AuthResponseProps {
+async function LoginUser(data: UserProps):Promise<AuthResponseProps> {
+    const jwtsecret = process.env.JWT_SECRET as string || 'Untitled'
     const cookieStore = cookies()
     try {
         const oneUser = await Prisma.user.findUnique({
             where: {
-                email: data.email,
+                email: data.email || 'UntitledEmail',
             },
         });
         if(oneUser){
             const validify = {
-                password: await argon2.verify(oneUser.password, data.password)
+                password: await argon2.verify(
+                    oneUser.password || 'UntitledPassword',
+                    data.password || 'UntitledPassword'
+                )
             }
             if(validify.password){
                 console.log(oneUser,validify)
-                const token = jwt.sign({ id: oneUser.id }, process.env.JWT_SECRET, {
+                const token = jwt.sign({ id: oneUser.id }, jwtsecret, {
                     expiresIn: '1d',
                 })
                 cookieStore.set('user', token, {
@@ -43,7 +47,10 @@ async function LoginUser(data: UserProps):AuthResponseProps {
                 }
             }
         }
-        return false
+        return {
+            message: 'Wrong email',
+            error: 'Wrong email'
+        }
     } catch (error) {
         console.log('Error retriving user:', error);
         return {

@@ -4,33 +4,42 @@ import { usePathname } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { useRouter } from 'next/navigation'
 import SessionCheck from '@/utils/sessionCheck'
+
+interface ResponseProps{
+    name?: string;
+    value?: string;
+}
+
 export default function RouteProtector():JSX.Element {
     const pathname = usePathname()
     const router = useRouter()
     useEffect(() => {
         async function GetProps(){
-            const response = await SessionCheck();
+            const protectedRoutes: string[] = [
+                '/my-account',
+                '/my-account/forgot-password',
+                '/my-account/reset-password',
+                '/my-account/create-blog',
+                '/my-account/edit-blog',
+                '/my-account/edit-profile',
+                '/my-account/my-blogs',
+                '/my-account/create-question',
+                '/my-account/edit-question',
+                '/my-account/my-questions',
+            ]
+            const isProtectedRoute = protectedRoutes.includes(pathname)
+            const response:ResponseProps = await SessionCheck();
+            if (isProtectedRoute) {
+                console.log(isProtectedRoute)
+                if (response?.name) {
+                    return
+                } else {
+                    router.push('/my-account')
+                }
+            }
             return response;
         }
         const token = GetProps()
-        isProtectedRoute(pathname,token)
-    }, [pathname])
+    }, [pathname, router])
     return (<></>)
-}
-
-function isProtectedRoute(pathname:string,token:string):void {
-    if (pathname === '/my-account/login' || pathname === '/my-account/signup') {
-        if (token) {
-            router.push('/my-account')
-        } else {
-            return
-        }
-    }
-    if (pathname === '/my-account/login' || pathname === '/my-account/signup') {
-        if (token) {
-            return
-        } else {
-            router.push('/my-account')
-        }
-    }
 }
