@@ -5,47 +5,35 @@ import jwt from 'jsonwebtoken'
 
 interface ReturnProps {
     message: string;
-    data: Question | null;
+    data: string
     state: boolean;
 }
 const jwtsecret = process.env.JWT_SECRET as string || 'Untitled'
 
 export default async function CreateQuestion(data:Question): Promise<ReturnProps> {
+    const {title='', body='', category=''} = data || {title:'', body:'', category:'' };
     const cookieStore = cookies();
     const token = cookieStore.get('user') || {name:'', value:''};
     try{
         const decoded = jwt.verify(token.value, jwtsecret) as {id: number, iat: number, exp: number} || {id: 0, iat: 0, exp: 0};
-        const user = await Prisma.user.findUnique({
-            where: {
-              id: decoded.id,
-            },
-          });
-          if (!user) {
-            console.error('User not found');
-            return {
-                message: 'User not found',
-                data: null,
-                state: false
-            }
-          }
           const question = await Prisma.question.create({
             data: {
-              title: data.title,
-              body: data.body,
-              category: data.category,
-              authorId: user.id,
+              title: data.title || 'Untitled',
+              body: data.body || 'Untitled',
+              category: data.category || 'Untitled',
+              authorId: decoded.id || 0,
             },
           });
         return {
             message: 'Question created',
-            data: question,
+            data: "Question created",
             state: true
         }
     } catch(err) {
         console.log(err)
         return {
             message: 'Error creating question',
-            data: null,
+            data: "Error creating question",
             state: false
         }
     }

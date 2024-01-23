@@ -6,9 +6,7 @@ import jwt from 'jsonwebtoken'
 import Prisma from '@/lib/prisma'
 import {BlogPostProps} from '@/types/BlogPost.d'
 
-export default async function createBlogs (data: { title: string; body: string; category: string; tags: string; })
-: 
-Promise<boolean> {
+export default async function createBlogs (data: { title: string; body: string; category: string; tags: string; }):Promise<boolean> {
     const {title='', body='', category='', tags=''} = data
     const cookieStore = cookies()
     const jwtsecret = process.env.JWT_SECRET as string || 'Untitled'
@@ -17,7 +15,7 @@ Promise<boolean> {
     const decodedToken = await jwt.verify(token, jwtsecret) as {id: number, iat: number, exp: number} || {id: 0, iat: 0, exp: 0}
     try{
         const blogCreated = {
-            title: title.toLowerCase().trim() || 'Untitled',
+            title: title.trim() || 'Untitled',
             body: body.trim() || 'Untitled',
             category: category.trim() || 'Untitled',
             tags: tags.trim() || 'Untitled',
