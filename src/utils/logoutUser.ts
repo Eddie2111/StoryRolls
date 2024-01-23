@@ -1,6 +1,6 @@
 'use server'
 import { cookies } from 'next/headers'
-export default async function LogOut(){
+export default async function LogOut(): Promise<boolean>{
     try{
         const user = cookies().delete('user') || 'Untitled'
         return true;

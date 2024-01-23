@@ -1,8 +1,13 @@
 'use server'
 import { cookies } from 'next/headers'
 
-export default async function SessionCheck() {
+export default async function SessionCheck(): Promise<{name:string, value:string}>{
     const cookieStore = cookies()
-    const user = cookieStore.get('user') || {name: 'untitled', value: 'untitled'}
-    return user;
+    try{
+      const user = await cookieStore.get('user') || {name: 'untitled', value: 'untitled'}
+      return user;
+    } catch (error) {
+      const user = {name: 'untitled', value: 'untitled'}
+      return user;
+    }
   }

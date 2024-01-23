@@ -74,3 +74,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes colorChange {
+  0% { background-color: #a0e1ff; }
+  25% { background-color: #daacff; }
+  50% { background-color: #ffb8e7; }
+  75% { background-color: #ffbdbd; }
+  100% { background-color: #ffdab7; }
+}

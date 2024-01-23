@@ -1,4 +1,5 @@
 import { CardHeader, CardContent, Card } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Image from 'next/image'
 import Link from 'next/link'
 export default function BlogSection():JSX.Element{
@@ -33,6 +34,16 @@ export default function BlogSection():JSX.Element{
             </Card>
           </Link>
         </section>
+
+        <Tabs defaultValue="account" className="w-[400px]">
+          <TabsList>
+            <TabsTrigger value="account">Account</TabsTrigger>
+            <TabsTrigger value="password">Password</TabsTrigger>
+          </TabsList>
+          <TabsContent value="account">Make changes to your account here.</TabsContent>
+          <TabsContent value="password">Change your password here.</TabsContent>
+        </Tabs>
+
       </main>
     )
 }

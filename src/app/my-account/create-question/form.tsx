@@ -8,12 +8,11 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input"
 import {Textarea} from "@/components/ui/textarea"
 import Editor from '@/components/editor/jodit'
-import CreateBlog from '@/utils/createBlogs'
+
 
 const formSchema = z.object({
     title: z.string().min(1, { message: "Title is required" }),
     body: z.string().min(1, { message: "Body is required" }).max(10000, { message: "Body must be less than 10000 characters" }),
-    tags: z.string().min(1, { message: "Tags are required" }),
     category: z.string().min(1, { message: "Category is required" }),
   })
 
@@ -23,12 +22,11 @@ export default function BlogForm(){
         defaultValues: {
             title: "",
             body: "",
-            tags: "",
             category: "",
         },
     })
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        await CreateBlog(values)
+        // await CreateBlog(values)
         console.log(values)
       }
     return(
@@ -52,22 +50,6 @@ export default function BlogForm(){
             )}
             />
             <div className="flex flex-col md:flex-row justify-between">
-            <FormField
-                control={form.control}
-                name="tags"
-                render={({ field }) => (
-                <FormItem>
-                    <FormLabel>Tags</FormLabel>
-                    <FormControl>
-                    <Input placeholder="Technology, Journey" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                    This is your blog tags. Must contain some good words seperated by commas that will help users find your blog.
-                    </FormDescription>
-                    <FormMessage />
-                </FormItem>
-                )}
-            />
             <FormField
                 control={form.control}
                 name="category"
@@ -107,4 +89,3 @@ export default function BlogForm(){
       </Form>
     )
 }
-        
