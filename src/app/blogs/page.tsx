@@ -6,11 +6,11 @@ import {BlogPostProps} from '@/types/BlogPost.d'
 import {GetUserbyID} from '@/utils/getUser'
 import { BlogPost } from '@prisma/client';
 interface GetUserProps {
-    data: {
-        id: string
+    data?: {
+        id: number
         name: string
         email: string
-    }
+    } | null;
     message: string;
     error: string;
 }
@@ -22,9 +22,8 @@ interface GetBlogsProps {
 
 export default async function Page(){
     try{
-        const Blogs:GetBlogsProps = await GetBlogs()
+        const Blogs:GetBlogsProps = await GetBlogs();
         if (!Blogs.data) {
-            // Handle the case when data is null or undefined
             return (
                 <div className="flex flex-col justify-center items-center">
                     <h1 className="text-4xl font-bold">Loading...</h1>
@@ -36,15 +35,16 @@ export default async function Page(){
                 <h1 className="text-4xl font-bold">Blogs</h1>
                 <p className="text-lg text-gray-500">Here are the list of blogs</p>
                 <div className="flex flex-col justify-center items-center mt-8">
-                    {Blogs.data.map((blog:BlogPost, index:number) => {
+                    {Blogs.data.map(async(blog:BlogPost, index:number) => {
                         return (
-                            <Card key={index} className="w-full md:w-1/2 lg:w-1/3">
-                                <p>author: {blog?.userID}</p>
-                                <p>title: {blog?.title}</p>
-                                <p>tags: {blog?.tags}</p>
-                                <p>created at: {blog?.createdAt.toString()}</p>
-                                <p>category: {blog?.category}</p>
-                            </Card>
+                            <BlogCard
+                                key={index}
+                                authorID={blog?.userID as number || 0}
+                                title={blog?.title as string || 'title'}
+                                tags={blog?.tags as string || 'tags'}
+                                createdAt={blog?.createdAt.toString() as string || 'createdAt'}
+                                category={blog?.category as string || 'category'}
+                            />
                         )
                     })}
                 </div>
@@ -59,4 +59,18 @@ export default async function Page(){
             </div>
         )
     }
+}
+async function BlogCard(
+    { authorID, title, tags, createdAt, category } :
+    { authorID: number, title: string, tags: string, createdAt: string, category: string }) : Promise<JSX.Element> {
+    let author:GetUserProps = await GetUserbyID(authorID as number || 0);
+    return (
+        <Card className="w-full md:w-1/2 lg:w-1/3">
+            <p>author: {author?.data?.name}</p>
+            <p>title: {title || 'title'}</p>
+            <p>tags: {tags || 'tags'}</p>
+            <p>created at: {createdAt || '1-1-24'}</p>
+            <p>category: {category || 'category'}</p>
+        </Card>
+    )
 }

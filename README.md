@@ -1,6 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Tasks left
+
+- complete the `create questions` page and integration
+- sign in, sign up, login page route protection test
+- design blogs page
 
 First, run the development server:
 

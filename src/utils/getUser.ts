@@ -11,9 +11,9 @@ interface ReturnProps {
         name: string,
     } | null
 }
-export async function GetUserbyID(id:string){
+export async function GetUserbyID(id:number){
     try {
-        const convertID = parseInt(id || '0') || 0
+        const convertID = id || 0;
         const oneUser = await Prisma.user.findUnique({
             where: {
                 id: convertID || 0,
