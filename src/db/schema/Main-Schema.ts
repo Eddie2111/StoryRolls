@@ -39,7 +39,3 @@
 //     blog: int('blog').references(() => blogs, "id").notNull(),
 //     replyTo: int('replyTo').references(() => BlogPostComments, "id"),
 // });
-
-
-
-

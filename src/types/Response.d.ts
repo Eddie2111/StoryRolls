@@ -1,7 +1,5 @@
 interface AuthResponseProps {
-    message: string;
-    error?: string;
+  message: string;
+  error?: string;
 }
-export {
-    AuthResponseProps
-}
+export {AuthResponseProps};

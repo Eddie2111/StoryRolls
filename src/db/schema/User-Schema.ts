@@ -8,7 +8,3 @@
 //     age: int('age'),
 //     profession: varchar('profession', { length: 32 })
 // });
-
-
-
-

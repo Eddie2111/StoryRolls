@@ -5,7 +5,3 @@
 //     followee: int('followee').references(() => users, "id").notNull(),
 //     follower: int('follower').references(() => users, "id").notNull(),
 // });
-
-
-
-

@@ -12,6 +12,3 @@
 //     body: varchar('body', { length: 512 }).notNull(),
 //     question: int('question').references(() => questions, "id").notNull(),
 // });
-
-
-
