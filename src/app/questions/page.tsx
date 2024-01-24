@@ -14,7 +14,6 @@ export default async function Page() {
                     questions && questions?.data?.map((question:Question) => (
                         <div key={question.id}>
                             <p>{question.title}</p>
-                            <p>{question.body}</p>
                             <p>{question.category}</p>
                         </div>
                     ))
