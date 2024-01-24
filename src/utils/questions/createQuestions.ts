@@ -1,3 +1,4 @@
+'use server'
 import Prisma from '@/lib/prisma';
 import {Question} from '@prisma/client'
 import { cookies } from 'next/headers'
@@ -10,7 +11,9 @@ interface ReturnProps {
 }
 const jwtsecret = process.env.JWT_SECRET as string || 'Untitled'
 
-export default async function CreateQuestion(data:Question): Promise<ReturnProps> {
+export default async function CreateQuestion(
+  data:{ title: string, body: string, category: string}
+  ): Promise<ReturnProps> {
     const {title='', body='', category=''} = data || {title:'', body:'', category:'' };
     const cookieStore = cookies();
     const token = cookieStore.get('user') || {name:'', value:''};

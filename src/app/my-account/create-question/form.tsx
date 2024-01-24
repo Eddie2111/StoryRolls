@@ -6,9 +6,8 @@ import React from "react";
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import {Textarea} from "@/components/ui/textarea"
 import Editor from '@/components/editor/jodit'
-
+import CreateQuestion from '@/utils/questions/createQuestions'
 
 const formSchema = z.object({
     title: z.string().min(1, { message: "Title is required" }),
@@ -16,7 +15,7 @@ const formSchema = z.object({
     category: z.string().min(1, { message: "Category is required" }),
   })
 
-export default function BlogForm(){
+export default function QuestionForm(){
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -26,13 +25,17 @@ export default function BlogForm(){
         },
     })
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        // await CreateBlog(values)
-        console.log(values)
+      try {
+        const response = await CreateQuestion(values)
+        console.log(response)
+      } catch(err) {
+        console.log(err)
       }
+    }
     return(
         <Form {...form}>
-        <h1 className="text-3xl text-center font-bold">Create a blog</h1>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <h1 className="text-3xl text-center font-bold">Create a question</h1>
         <FormField
             control={form.control}
             name="title"
@@ -49,7 +52,6 @@ export default function BlogForm(){
                 </FormItem>
             )}
             />
-            <div className="flex flex-col md:flex-row justify-between">
             <FormField
                 control={form.control}
                 name="category"
@@ -66,7 +68,6 @@ export default function BlogForm(){
                 </FormItem>
                 )}
             />
-            </div>
             <FormField
             control={form.control}
             name="body"

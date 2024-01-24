@@ -12,20 +12,32 @@ export default function Page(): JSX.Element {
         {
             auth ? (
                 <div className='container mx-20 my-5'>
+
                     <h1 className='text-3xl font-bold mb-10'>My Account</h1>
                     <div className='flex flex-col md:flex-row gap-5'>
                         <CustomCard title='Ask a question' subtitle='Ask your question to the community' link='/my-account/create-question'/>
                         <CustomCard title='Write a blog' subtitle='Write a blog to let your knowledge spread' link='/my-account/create-blog'/>
                     </div>
+
+                    <h1 className='text-3xl font-bold my-10'>My Activity</h1>
+                    <div className='grid gap-x-36 gap-y-5 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 '>
+                        <CustomCard title='My Questions' subtitle='Check the questions you have asked' link='/my-account/my-questions'/>
+                        <CustomCard title='My Blogs' subtitle='Check the blogs you have wrote' link='/my-account/my-blogs'/>
+                        <CustomCard title='My Comments' subtitle='Check the comments you have wrote' link='/my-account/#'/>
+                        <CustomCard title='My Reports' subtitle='Check the contents you have reported' link='/my-account/#'/>
+                    </div>
+
                 </div>
             )
             : (
                 <div className='container mx-20 my-5'>
+
                     <h1 className='text-3xl font-bold mb-10'>User Accounts</h1>
                     <div className='flex flex-col md:flex-row gap-5'>
                         <CustomCard title='Login' subtitle='Use your existing account' link='/my-account/login'/>
                         <CustomCard title='Create an account' subtitle='Sign up with story rolls today' link='/my-account/signup'/>
                     </div>
+
                 </div>
             )
         }
