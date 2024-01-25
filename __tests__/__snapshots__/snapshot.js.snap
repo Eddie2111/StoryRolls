@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<div>
+  <section>
+    <main
+      class="flex-1 py-8 bg-gradient-to-r from-gray-200 to-slate-300"
+    >
+      <section
+        class="text-center py-16 "
+      >
+        <h2
+          class="text-4xl font-bold"
+        >
+          Welcome to StoryRolls
+        </h2>
+        <p
+          class="mt-4 text-gray-900"
+        >
+          A place where stories come to life.
+        </p>
+      </section>
+      <section
+        class="grid gap-8 p-8 md:grid-cols-2 lg:grid-cols-3"
+      />
+    </main>
+    <div
+      class="rounded-lg w-[98%] mx-auto"
+    >
+      <main>
+        <section
+          class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4"
+        >
+          <a
+            href="/blogs/blog-1"
+          >
+            <div
+              class="rounded-xl border bg-card text-card-foreground shadow"
+            >
+              <div
+                class="w-full"
+              />
+              <div>
+                <img
+                  alt="Avatar"
+                  class="mx-auto"
+                  data-nimg="1"
+                  decoding="async"
+                  height="50"
+                  loading="lazy"
+                  src="/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1703672141188-117ba6518b12%3Fq%3D80%26w%3D2070%26auto%3Dformat%26fit%3Dcrop%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D&w=640&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1703672141188-117ba6518b12%3Fq%3D80%26w%3D2070%26auto%3Dformat%26fit%3Dcrop%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D&w=384&q=75 1x, /_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1703672141188-117ba6518b12%3Fq%3D80%26w%3D2070%26auto%3Dformat%26fit%3Dcrop%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D&w=640&q=75 2x"
+                  style="color: transparent; width: 100%; height: auto;"
+                  width="280"
+                />
+              </div>
+              <div
+                class="flex flex-col space-y-1.5 p-6 text-lg font-semibold truncate"
+              >
+                Blog Title 1
+              </div>
+              <div
+                class="p-6 pt-0 truncate"
+              >
+                This is the description of the first blog.
+              </div>
+            </div>
+          </a>
+          <a
+            href="/blogs/blog-2"
+          >
+            <div
+              class="rounded-xl border bg-card text-card-foreground shadow"
+            >
+              <div
+                class="w-full"
+              />
+              <img
+                alt="Avatar"
+                class="mx-auto"
+                data-nimg="1"
+                decoding="async"
+                height="50"
+                loading="lazy"
+                src="/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1703672141188-117ba6518b12%3Fq%3D80%26w%3D2070%26auto%3Dformat%26fit%3Dcrop%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D&w=640&q=75"
+                srcset="/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1703672141188-117ba6518b12%3Fq%3D80%26w%3D2070%26auto%3Dformat%26fit%3Dcrop%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D&w=384&q=75 1x, /_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1703672141188-117ba6518b12%3Fq%3D80%26w%3D2070%26auto%3Dformat%26fit%3Dcrop%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D&w=640&q=75 2x"
+                style="color: transparent; width: 100%; height: auto;"
+                width="280"
+              />
+              <div
+                class="flex flex-col space-y-1.5 p-6 text-lg font-semibold truncate"
+              >
+                Blog Title 2
+              </div>
+              <div
+                class="p-6 pt-0 truncate"
+              >
+                This is the description of the second blog.
+              </div>
+            </div>
+          </a>
+          <a
+            href="/blogs/blog-3"
+          >
+            <div
+              class="rounded-xl border bg-card text-card-foreground shadow"
+            >
+              <div
+                class="w-full"
+              />
+              <img
+                alt="Avatar"
+                class="mx-auto"
+                data-nimg="1"
+                decoding="async"
+                height="50"
+                loading="lazy"
+                src="/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1703672141188-117ba6518b12%3Fq%3D80%26w%3D2070%26auto%3Dformat%26fit%3Dcrop%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D&w=640&q=75"
+                srcset="/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1703672141188-117ba6518b12%3Fq%3D80%26w%3D2070%26auto%3Dformat%26fit%3Dcrop%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D&w=384&q=75 1x, /_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1703672141188-117ba6518b12%3Fq%3D80%26w%3D2070%26auto%3Dformat%26fit%3Dcrop%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D&w=640&q=75 2x"
+                style="color: transparent; width: 100%; height: auto;"
+                width="280"
+              />
+              <div
+                class="flex flex-col space-y-1.5 p-6 text-lg font-semibold truncate"
+              >
+                Blog Title 3
+              </div>
+              <div
+                class="p-6 pt-0 truncate"
+              >
+                This is the description of the third blog.
+              </div>
+            </div>
+          </a>
+        </section>
+        <div
+          class="w-[400px]"
+          data-orientation="horizontal"
+          dir="ltr"
+        >
+          <div
+            aria-orientation="horizontal"
+            class="inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground"
+            data-orientation="horizontal"
+            role="tablist"
+            style="outline: none;"
+            tabindex="0"
+          >
+            <button
+              aria-controls="radix-:r0:-content-account"
+              aria-selected="true"
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow"
+              data-orientation="horizontal"
+              data-radix-collection-item=""
+              data-state="active"
+              id="radix-:r0:-trigger-account"
+              role="tab"
+              tabindex="-1"
+              type="button"
+            >
+              Account
+            </button>
+            <button
+              aria-controls="radix-:r0:-content-password"
+              aria-selected="false"
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow"
+              data-orientation="horizontal"
+              data-radix-collection-item=""
+              data-state="inactive"
+              id="radix-:r0:-trigger-password"
+              role="tab"
+              tabindex="-1"
+              type="button"
+            >
+              Password
+            </button>
+          </div>
+          <div
+            aria-labelledby="radix-:r0:-trigger-account"
+            class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            data-orientation="horizontal"
+            data-state="active"
+            id="radix-:r0:-content-account"
+            role="tabpanel"
+            style="animation-duration: 0s;"
+            tabindex="0"
+          >
+            Make changes to your account here.
+          </div>
+          <div
+            aria-labelledby="radix-:r0:-trigger-password"
+            class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            data-orientation="horizontal"
+            data-state="inactive"
+            hidden=""
+            id="radix-:r0:-content-password"
+            role="tabpanel"
+            tabindex="0"
+          />
+        </div>
+      </main>
+    </div>
+  </section>
+</div>
+`;

@@ -1,7 +1,7 @@
-'use client';
-import React, {useRef, useMemo} from 'react';
-const JoditEditor = dynamic(() => import('jodit-react'), {ssr: false});
-import dynamic from 'next/dynamic';
+"use client";
+import React, {useRef, useMemo} from "react";
+const JoditEditor = dynamic(() => import("jodit-react"), {ssr: false});
+import dynamic from "next/dynamic";
 
 interface EditorProps {
   placeholder: string;
@@ -14,7 +14,7 @@ export default function Editor({placeholder, value, onChange}: EditorProps) {
   const config = useMemo(
     () => ({
       readonly: false,
-      placeholder: placeholder || 'Start typings...',
+      placeholder: placeholder || "Start typings...",
     }),
     [placeholder],
   );
@@ -25,7 +25,7 @@ export default function Editor({placeholder, value, onChange}: EditorProps) {
       config={config}
       onBlur={(newContent) => onChange(newContent)} // preferred to use only this option to update the content for performance reasons
       onChange={(newContent) => {}}
-      className='text-black bg-slate-600'
+      className="text-black bg-slate-600"
     />
   );
 }

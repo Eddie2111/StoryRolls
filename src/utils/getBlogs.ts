@@ -1,6 +1,6 @@
-'use server';
-import Prisma from '@/lib/prisma';
-import {BlogPost} from '@prisma/client';
+"use server";
+import Prisma from "@/lib/prisma";
+import {BlogPost} from "@prisma/client";
 
 interface ReturnProps {
   message: string;
@@ -10,7 +10,7 @@ interface ReturnProps {
 
 export async function getBlogByID(id: string): Promise<ReturnProps> {
   try {
-    const convertIDtoInt = parseInt(id || '0') || 0;
+    const convertIDtoInt = parseInt(id || "0") || 0;
     const oneBlog = await Prisma.blogPost.findUnique({
       where: {
         id: convertIDtoInt || 0,
@@ -18,21 +18,21 @@ export async function getBlogByID(id: string): Promise<ReturnProps> {
     });
     if (oneBlog) {
       return {
-        message: 'Blog found',
-        error: '',
+        message: "Blog found",
+        error: "",
         data: oneBlog,
       };
     } else {
       return {
-        message: 'Wrong blog',
-        error: 'Wrong blog',
+        message: "Wrong blog",
+        error: "Wrong blog",
         data: null,
       };
     }
   } catch (err) {
     return {
-      message: 'Error retriving blog, try again?',
-      error: 'Error retriving blog, connection failure.',
+      message: "Error retriving blog, try again?",
+      error: "Error retriving blog, connection failure.",
       data: null,
     };
   }

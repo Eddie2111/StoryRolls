@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth';
+import NextAuth from "next-auth";
 
 const handler = NextAuth({
   // Configure one or more authentication providers
@@ -34,4 +34,4 @@ const handler = NextAuth({
   ],
 });
 
-export {handler as GET, handler as POST};
+export { handler as GET, handler as POST };

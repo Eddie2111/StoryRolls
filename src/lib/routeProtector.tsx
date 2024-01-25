@@ -1,8 +1,8 @@
-'use client';
-import {useEffect} from 'react';
-import {usePathname} from 'next/navigation';
-import {useRouter} from 'next/navigation';
-import SessionCheck from '@/utils/sessionCheck';
+"use client";
+import {useEffect} from "react";
+import {usePathname} from "next/navigation";
+import {useRouter} from "next/navigation";
+import SessionCheck from "@/utils/sessionCheck";
 
 interface ResponseProps {
   name?: string;
@@ -15,16 +15,16 @@ export default function RouteProtector(): JSX.Element {
   useEffect(() => {
     async function GetProps() {
       const protectedRoutes: string[] = [
-        '/my-account',
-        '/my-account/forgot-password',
-        '/my-account/reset-password',
-        '/my-account/create-blog',
-        '/my-account/edit-blog',
-        '/my-account/edit-profile',
-        '/my-account/my-blogs',
-        '/my-account/create-question',
-        '/my-account/edit-question',
-        '/my-account/my-questions',
+        "/my-account",
+        "/my-account/forgot-password",
+        "/my-account/reset-password",
+        "/my-account/create-blog",
+        "/my-account/edit-blog",
+        "/my-account/edit-profile",
+        "/my-account/my-blogs",
+        "/my-account/create-question",
+        "/my-account/edit-question",
+        "/my-account/my-questions",
       ];
       const isProtectedRoute = protectedRoutes.includes(pathname);
       const response: ResponseProps = await SessionCheck();
@@ -33,7 +33,7 @@ export default function RouteProtector(): JSX.Element {
         if (response?.name) {
           return;
         } else {
-          router.push('/my-account');
+          router.push("/my-account");
         }
       }
       return response;

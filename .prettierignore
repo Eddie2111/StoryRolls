@@ -1,0 +1,11 @@
+./node_modules
+*.log
+*.json
+*.js
+*.yml
+*.yaml
+.env
+.env.*
+*.config.js
+*.config.ts
+*.config.json
