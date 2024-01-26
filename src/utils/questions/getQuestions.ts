@@ -3,6 +3,7 @@
 import Prisma from "@/lib/prisma";
 import { Question } from "@prisma/client";
 import { GetUserByCookie } from "@/utils/getUser";
+
 interface ReturnProps {
   success: boolean;
   message: string;
@@ -100,10 +101,9 @@ export async function GetOneQuestion(id: number): Promise<ReturnProps> {
   }
 }
 
-export async function GetQuestionsByUser(userId: number): Promise<ReturnProps> {
+export async function GetQuestionsByUser(): Promise<ReturnProps> {
   try {
     const userID: SingleUserReturnProps = await GetUserByCookie();
-    console.log(userID);
     const questions: Question[] = await Prisma.question.findMany({
       where: {
         authorId: userID?.data?.id || 0,

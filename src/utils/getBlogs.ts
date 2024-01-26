@@ -1,11 +1,50 @@
 "use server";
 import Prisma from "@/lib/prisma";
-import {BlogPost} from "@prisma/client";
+import { BlogPost } from "@prisma/client";
 
 interface ReturnProps {
   message: string;
   error: string;
   data: BlogPost | null;
+}
+interface ManyReturnProps {
+  message: string;
+  error: string;
+  data: BlogPost[] | null;
+}
+
+export async function getBlogsByID(id: string): Promise<ManyReturnProps> {
+  try {
+    const convertIDtoInt = parseInt(id || "0") || 0;
+    const blogsByUser: BlogPost[] = await Prisma.blogPost.findMany({
+      where: {
+        userID: convertIDtoInt,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: 10,
+    });
+    if (blogsByUser) {
+      return {
+        message: "Blog found",
+        error: "",
+        data: blogsByUser,
+      };
+    } else {
+      return {
+        message: "Wrong blog",
+        error: "Wrong blog",
+        data: null,
+      };
+    }
+  } catch (err) {
+    return {
+      message: "Error retriving blog, try again?",
+      error: "Error retriving blog, connection failure.",
+      data: null,
+    };
+  }
 }
 
 export async function getBlogByID(id: string): Promise<ReturnProps> {

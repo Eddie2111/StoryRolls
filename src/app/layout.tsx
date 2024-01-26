@@ -9,6 +9,7 @@ import { Toaster } from "sonner";
 
 import Navbar from "@/components/ui/navigation-menu/navbar";
 import RouteProtector from "@/lib/routeProtector";
+import Footer from "@/components/ui/footer/index";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           {children}
         </ThemeProvider>
+        <Footer />
       </body>
     </html>
   );

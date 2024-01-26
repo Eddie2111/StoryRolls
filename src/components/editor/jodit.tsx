@@ -1,6 +1,6 @@
 "use client";
-import React, {useRef, useMemo} from "react";
-const JoditEditor = dynamic(() => import("jodit-react"), {ssr: false});
+import React, { useRef, useMemo } from "react";
+const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 import dynamic from "next/dynamic";
 
 interface EditorProps {
@@ -9,12 +9,18 @@ interface EditorProps {
   onChange: (newContent: string) => void;
 }
 
-export default function Editor({placeholder, value, onChange}: EditorProps) {
+export default function Editor({ placeholder, value, onChange }: EditorProps) {
   const editor = useRef(null);
   const config = useMemo(
     () => ({
       readonly: false,
       placeholder: placeholder || "Start typings...",
+      theme: "dark",
+      height: "100%",
+      minHeight: "500px",
+      minWidth: "320px",
+      // uploader: { insertImageAsBase64URI: true },
+      // enableDragAndDropFileToEditor: true,
     }),
     [placeholder],
   );

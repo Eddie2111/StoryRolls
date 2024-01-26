@@ -6,8 +6,8 @@ export default async function Page({ params }: { params: { blog: string } }) {
   if (!blog) return <div>loading</div>;
   if (!blog.data) return <div>No Blogs Found</div>;
   return (
-    <div>
-      <p>{blog?.data?.title}</p>
+    <div className="container mx-auto my-10">
+      <h1 className="text-3xl font-bold">{blog.data.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: convertedBody || "" }}></div>
     </div>
   );

@@ -1,13 +1,15 @@
 "use client";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {useForm} from "react-hook-form";
-import {z} from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import React from "react";
-import {Button} from "@/components/ui/button";
-import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
-import {Input} from "@/components/ui/input";
-import {createAccount} from "@/utils/accountCreate";
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { createAccount } from "@/utils/accountCreate";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(3, "Name is too short").max(35, "Name is too long"),
@@ -17,6 +19,7 @@ const formSchema = z.object({
 });
 
 export default function BlogForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,6 +38,12 @@ export default function BlogForm() {
       return;
     } else {
       const response = await createAccount(values);
+      if (response) {
+        toast("Account Created");
+        setInterval(() => {
+          router.push("/my-account");
+        }, 2000);
+      }
       console.log(response);
     }
   }
@@ -49,7 +58,7 @@ export default function BlogForm() {
             <FormField
               control={form.control}
               name="name"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>UserName</FormLabel>
                   <FormControl>
@@ -63,7 +72,7 @@ export default function BlogForm() {
             <FormField
               control={form.control}
               name="email"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
@@ -77,7 +86,7 @@ export default function BlogForm() {
             <FormField
               control={form.control}
               name="password"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
@@ -91,7 +100,7 @@ export default function BlogForm() {
             <FormField
               control={form.control}
               name="confirmPassword"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Confirm Password</FormLabel>
                   <FormControl>

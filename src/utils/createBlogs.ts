@@ -1,18 +1,17 @@
 "use server";
-import {cookies} from "next/headers";
+import { cookies } from "next/headers";
 import createBlog from "@/db/models/create-blog";
-import {BlogPost} from "@prisma/client";
+import { BlogPost } from "@prisma/client";
 import jwt from "jsonwebtoken";
 import Prisma from "@/lib/prisma";
-import {BlogPostProps} from "@/types/BlogPost.d";
 
-export default async function createBlogs(data: {title: string; body: string; category: string; tags: string}): Promise<boolean> {
-  const {title = "", body = "", category = "", tags = ""} = data;
+export default async function createBlogs(data: { title: string; body: string; category: string; tags: string }): Promise<boolean> {
+  const { title = "", body = "", category = "", tags = "" } = data;
   const cookieStore = cookies();
   const jwtsecret = (process.env.JWT_SECRET as string) || "Untitled";
-  const userCookie = cookieStore.get("user") || {name: "", value: ""};
+  const userCookie = cookieStore.get("user") || { name: "", value: "" };
   const token = userCookie.value || "";
-  const decodedToken = ((await jwt.verify(token, jwtsecret)) as {id: number; iat: number; exp: number}) || {
+  const decodedToken = ((await jwt.verify(token, jwtsecret)) as { id: number; iat: number; exp: number }) || {
     id: 0,
     iat: 0,
     exp: 0,
@@ -25,8 +24,8 @@ export default async function createBlogs(data: {title: string; body: string; ca
       tags: tags.trim() || "Untitled",
       userID: decodedToken.id || 0,
     };
-    const pushData = await Prisma.blogPost.create({data: blogCreated});
-    console.log(blogCreated);
+    const pushData = await Prisma.blogPost.create({ data: blogCreated });
+    console.log("Blog created by", decodedToken.id);
     if (!blogCreated) {
       return false;
     } else {

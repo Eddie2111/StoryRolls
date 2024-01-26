@@ -10,14 +10,16 @@ import { Textarea } from "@/components/ui/textarea";
 import Editor from "@/components/editor/jodit";
 import CreateBlog from "@/utils/createBlogs";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 const formSchema = z.object({
   title: z.string().min(1, { message: "Title is required" }),
-  body: z.string().min(1, { message: "Body is required" }).max(10000, { message: "Body must be less than 10000 characters" }),
+  body: z.string().min(1, { message: "Body is required" }).max(100000, { message: "Body must be less than 10000 characters" }),
   tags: z.string().min(1, { message: "Tags are required" }),
   category: z.string().min(1, { message: "Category is required" }),
 });
 
 export default function BlogForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -31,7 +33,15 @@ export default function BlogForm() {
     try {
       const response = await CreateBlog(values);
       console.log(values);
-      // toast(response.message || "Blog created successfully");
+      if (response) {
+        toast("Blog created successfully");
+        setInterval(() => {
+          router.push("/my-account");
+        }, 2000);
+        form.reset();
+      } else {
+        toast("Something went wrong, try again?");
+      }
     } catch (err) {
       // toast(err.message || "Something went wrong, try again?");
       console.log(err);
