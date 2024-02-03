@@ -1,8 +1,7 @@
 import { GetUserByCookie } from "@/utils/getUser";
 import { getBlogsByID } from "@/utils/getBlogs";
 import { BlogPost } from "@prisma/client";
-import { CardHeader, CardContent, Card } from "@/components/ui/card";
-import Image from "next/image";
+import ContentCard from "@/components/contents/card";
 import Link from "next/link";
 interface ReturnProps {
   // from blogpost.tsx
@@ -39,29 +38,17 @@ export default async function Page() {
         </span>
       </div>
       <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-8">
-        {blog?.data?.map((blog: BlogPost, index: number) => {
-          return (
-            <Card className="w-[24rem] mx-auto" key={index}>
-              <Image
-                alt="Image"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
-                height="310"
-                src={Image1}
-                width="550"
-              />
-              <CardContent className="flex flex-col justify-center space-y-4 mt-5">
-                <h3 className="text-lg font-bold truncate">{blog?.title}</h3>
-                <p className="text-gray-500 dark:text-gray-400">{blog?.category}</p>
-                <Link
-                  className="inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-gray-300 text-black bg-white dark:text-black dark:bg-white hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white shadow-md shadow-slate-400 duration-300"
-                  href={`/blogs/${blog?.id}`}
-                >
-                  Read More
-                </Link>
-              </CardContent>
-            </Card>
-          );
-        })}
+        {blog?.data?.map((blog: BlogPost, index: number) => (
+          <ContentCard
+            key={index}
+            title={(blog?.title as string) || "title"}
+            category={(blog?.category as string) || "category"}
+            id={(blog?.id as number) || 0}
+            author={(user.data?.name as string) || "author"}
+            tags={(blog?.tags as string) || "tags"}
+            createdAt={(blog?.createdAt.toString() as string) || "Sun Jan 10 2020"}
+          />
+        ))}
         {blog?.data?.length === 0 ? (
           <div>
             <h1>No Blogs Found</h1>

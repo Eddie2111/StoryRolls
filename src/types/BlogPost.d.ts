@@ -1,3 +1,5 @@
+import { BlogPost } from "@prisma/client";
+
 interface BlogPostProps {
   title?: string;
   body?: JSON | string | null | undefined;
@@ -22,5 +24,28 @@ interface BlogPostProps {
     userID?: number;
   };
 }
+interface GetBlogsProps {
+  data?: BlogPost[] | null;
+  message: string;
+  error: string;
+}
+interface CategoriesProps {
+  message: string;
+  error: string;
+  data: { category: string }[] | null;
+}
+interface CategoriesDataProps {
+  category: string;
+}
+interface ManyReturnProps {
+  message: string;
+  error: string;
+  data: BlogPost[] | null;
+}
+interface ReturnProps {
+  message: string;
+  error: string;
+  data: BlogPost | null;
+}
 
-export {BlogPostProps};
+export { BlogPostProps, GetBlogsProps, CategoriesProps, CategoriesDataProps, ManyReturnProps, ReturnProps };
