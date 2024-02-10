@@ -16,10 +16,10 @@ interface ManyReturnProps {
   data: BlogPost[] | null;
 }
 
-interface BlogPostWithBody extends BlogPost {
-  body: JsonValue;
-  userID: number | null;
-}
+// interface BlogPostWithBody extends BlogPost {
+//   body: JsonValue;
+//   userID: number | null;
+// }
 
 export async function getBlogsByID(id: string): Promise<ManyReturnProps> {
   try {
@@ -117,7 +117,7 @@ export async function getBlogsCategory(): Promise<CategoriesProps> {
 
 export async function getBlogsBySearching(search: string): Promise<ManyReturnProps> {
   try {
-    const blogsBySearch: BlogPostWithBody[] = await Prisma.blogPost.findMany({
+    const blogsBySearch: BlogPost[] = await Prisma.blogPost.findMany({
       where: {
         OR: [
           {
@@ -141,16 +141,6 @@ export async function getBlogsBySearching(search: string): Promise<ManyReturnPro
         createdAt: "desc",
       },
       take: 10,
-      select: {
-        id: true,
-        title: true,
-        tags: true,
-        category: true,
-        createdAt: true,
-        updatedAt: true,
-        published: true,
-        userID: true,
-      },
     });
     if (blogsBySearch) {
       return {
