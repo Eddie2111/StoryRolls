@@ -2,7 +2,6 @@
 import Prisma from "@/lib/prisma";
 import { BlogPost } from "@prisma/client";
 import { CategoriesProps } from "@/types/BlogPost.d";
-import { JsonValue } from "type-fest";
 
 interface ReturnProps {
   message: string;
@@ -15,11 +14,6 @@ interface ManyReturnProps {
   error: string;
   data: BlogPost[] | null;
 }
-
-// interface BlogPostWithBody extends BlogPost {
-//   body: JsonValue;
-//   userID: number | null;
-// }
 
 export async function getBlogsByID(id: string): Promise<ManyReturnProps> {
   try {
