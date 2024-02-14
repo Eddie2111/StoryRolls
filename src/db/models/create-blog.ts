@@ -1,5 +1,6 @@
 "use server";
 import Prisma from "@/lib/prisma";
+import {blogPost} from ""
 import {BlogPostProps} from "@/types/BlogPost.d";
 interface MessageProps {
   message: string;

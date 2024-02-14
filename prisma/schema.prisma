@@ -51,7 +51,7 @@ model BlogPost {
   likes     Likes[]
   dislikes  Dislikes[]
   reports   ReportBlogs[]
-  commnets  BlogComments[]
+  comments  BlogComments[]
   userID    Int?
   author    User?          @relation(fields: [userID], references: [id])
 
