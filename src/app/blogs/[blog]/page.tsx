@@ -1,12 +1,10 @@
-import CommentBox from "@/components/comment/single-comment";
-
-import { getBlogByID } from "@/utils/blogs/getBlogs";
-import { GetUserbyID } from "@/utils/users/getUser";
-
 // Return types
 import type { Metadata, ResolvingMetadata } from "next";
+
+import CommentBox from "@/components/comment/single-comment";
+import { getBlogByID } from "@/utils/blogs/getBlogs";
+import { GetUserbyID } from "@/utils/users/getUser";
 import { ReturnProps } from "@/types/BlogPost.d";
-import { BlogPost, User } from "@prisma/client";
 
 interface GetUserProps {
     data?: {
@@ -17,6 +15,11 @@ interface GetUserProps {
     message: string;
     error: string;
 }
+
+type Props = {
+    params: { blog: string };
+    searchParams: { [key: string]: string | string[] | undefined };
+};
 
 export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
     const id = params.blog;

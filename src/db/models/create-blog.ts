@@ -1,13 +1,13 @@
 "use server";
-import { BlogPostProps } from "@/types/BlogPost.d";
+import { BlogPost } from "@prisma/client";
 import Prisma from "@/lib/prisma";
-import { blogPost } from "";
+
 interface MessageProps {
     message: string;
     error: string;
     data?: string;
 }
-export default async function createBlogPost({ data }: BlogPostProps): Promise<MessageProps> {
+export default async function createBlogPost(data: Partial<BlogPost>): Promise<MessageProps> {
     try {
         const newBlogPost = await Prisma.blogPost.create({
             data: {

@@ -18,7 +18,7 @@ interface ManyReturnProps {
 export async function getBlogsByID(id: string): Promise<ManyReturnProps> {
     try {
         const convertIDtoInt = parseInt(id || "0") || 0;
-        const blogsByUser: Partial<BlogPost[]> = await Prisma.blogPost.findMany({
+        const blogsByUser: any = await Prisma.blogPost.findMany({
             where: {
                 userID: convertIDtoInt,
             },

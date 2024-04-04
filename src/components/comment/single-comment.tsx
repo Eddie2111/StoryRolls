@@ -1,9 +1,11 @@
 "use client";
+import React, { useState } from "react";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CreateBlogComments } from "@/utils/blogs/create-blog-comments";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+
 export default function CommentBox() {
     const [commentBody, setCommentBody] = useState<string>("");
 
@@ -25,7 +27,6 @@ export default function CommentBox() {
                 <div className="flex w-full items-center">
                     <Textarea
                         name="comment"
-                        type="text"
                         placeholder="Write your comment"
                         className="w-full"
                         value={commentBody}

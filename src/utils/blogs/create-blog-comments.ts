@@ -1,11 +1,12 @@
 "use server";
 import { GetUserByCookie } from "@/utils/users/getUser";
-import { BlogComments } from "@prisma/client";
 import Prisma from "@/lib/prisma";
+
 interface BlogCommentProps {
     body: string;
-    postId: string;
+    blogPostId: number;
 }
+
 export async function CreateBlogComments(data: BlogCommentProps) {
     try {
         const user = await GetUserByCookie();
@@ -14,7 +15,7 @@ export async function CreateBlogComments(data: BlogCommentProps) {
             id: 1,
             body: data.body || " ",
             authorId: user?.data?.id || 0,
-            blogPostId: data.id,
+            blogPostId: data.blogPostId,
         };
         const response = await Prisma.blogComments.create({ data: dataset });
         console.log(response);
