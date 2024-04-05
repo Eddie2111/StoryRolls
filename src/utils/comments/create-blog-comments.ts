@@ -12,7 +12,6 @@ export async function CreateBlogComments(data: BlogCommentProps) {
         const user = await GetUserByCookie();
 
         const dataset = {
-            id: 1,
             body: data.body || " ",
             authorId: user?.data?.id || 0,
             blogPostId: data.blogPostId,
@@ -20,7 +19,8 @@ export async function CreateBlogComments(data: BlogCommentProps) {
         const response = await Prisma.blogComments.create({ data: dataset });
         console.log(response);
         return dataset;
-    } catch (err) {
+    } catch (err: unknown) {
+        console.log(err);
         return {
             data: null,
         };

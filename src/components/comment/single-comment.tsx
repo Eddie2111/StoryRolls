@@ -1,23 +1,26 @@
 "use client";
 import React, { useState } from "react";
 
+import { toast } from "sonner";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { CreateBlogComments } from "@/utils/blogs/create-blog-comments";
+import { CreateBlogComments } from "@/utils/comments/create-blog-comments";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
-export default function CommentBox() {
+export default function CommentBox({ id }: { id: string }) {
     const [commentBody, setCommentBody] = useState<string>("");
-
     const submitHandle = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(commentBody);
+        const blogID = parseInt(id) || 0;
         const response = await CreateBlogComments({
             body: commentBody,
-            blogPostId: 2,
+            blogPostId: blogID,
         });
         console.log(response);
-        // Add your logic to submit the comment
+        setCommentBody("");
+        toast.success("You added a comment!");
     };
 
     return (
