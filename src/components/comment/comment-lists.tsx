@@ -6,19 +6,28 @@ import { BlogComments } from "@prisma/client";
 export async function CommentLists({ id }: { id: string }) {
     const body = await GetCommentsByPost(id || "0");
     const commentLength = body?.data?.length || 0;
-    return (
-        <div className="grid gap-6">
-            <h2 className="font-semibold text-xl">{commentLength} Comments</h2>
-            {body &&
-                body.data.map(async (items: Partial<(BlogComments | undefined)[]>, index: number) => {
-                    const splittedDate = items.createdAt.toDateString() || "Sun Jan 0 2020";
-                    const userName = await GetUserbyID(items?.authorId || 0);
-                    return (
-                        <SingleComment key={index} username={userName?.data?.name || " "} commentBody={items?.body} date={splittedDate} />
-                    );
-                })}
-        </div>
-    );
+    if (!body.data) {
+        return <div>Loading </div>;
+    } else {
+        return (
+            <div className="grid gap-6">
+                <h2 className="font-semibold text-xl">{commentLength} Comments</h2>
+                {body &&
+                    body?.data?.map(async (items: Partial<(BlogComments | undefined)[]>, index: number): any => {
+                        const splittedDate = items.createdAt.toDateString() || "Sun Jan 0 2020";
+                        const userName = await GetUserbyID(items?.authorId || 0);
+                        return (
+                            <SingleComment
+                                key={index}
+                                username={userName?.data?.name || " "}
+                                commentBody={items?.body}
+                                date={splittedDate}
+                            />
+                        );
+                    })}
+            </div>
+        );
+    }
 }
 
 export function SingleComment({
