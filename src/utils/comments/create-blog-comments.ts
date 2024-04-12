@@ -1,6 +1,6 @@
 "use server";
-import Prisma from '@/lib/prisma';
-import { GetUserByCookie } from '@/utils/users/getUser';
+import { GetUserByCookie } from "@/utils/users/getUser";
+import Prisma from "@/lib/prisma";
 
 interface BlogCommentProps {
     body: string;
@@ -25,13 +25,13 @@ export async function CreateBlogComments(data: BlogCommentProps) {
             return {
                 message: "Your comment has been posted",
                 status: 200,
-                data: true
-            }
+                data: true,
+            };
         } else {
             return {
                 message: "Please login in to comment",
                 status: 302,
-                data: false
+                data: false,
             };
         }
     } catch (err: unknown) {
@@ -39,7 +39,7 @@ export async function CreateBlogComments(data: BlogCommentProps) {
         return {
             message: "Error occured, try again later perhaps?",
             status: 400,
-            data:false
+            data: false,
         };
     }
 }

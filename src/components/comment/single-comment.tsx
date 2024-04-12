@@ -1,19 +1,12 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { toast } from 'sonner';
+import { toast } from "sonner";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import {
-  CreateBlogComments,
-  type ReturnProps,
-} from '@/utils/comments/create-blog-comments';
+import { CreateBlogComments, type ReturnProps } from "@/utils/comments/create-blog-comments";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
 export default function CommentBox({ id }: { id: string }) {
     const [commentBody, setCommentBody] = useState<string>("");
@@ -21,16 +14,16 @@ export default function CommentBox({ id }: { id: string }) {
         e.preventDefault();
         console.log(commentBody);
         const blogID = parseInt(id) || 0;
-        const response = await CreateBlogComments<ReturnProps>({
+        const response: ReturnProps = await CreateBlogComments({
             body: commentBody,
             blogPostId: blogID,
         });
         console.log(response);
         setCommentBody("");
         if (response?.data) {
-            toast.success(response?.message || "Your comment has been posted")
+            toast.success(response?.message || "Your comment has been posted");
         } else {
-            toast.warning(response?.message || "Failed to post comment")
+            toast.warning(response?.message || "Failed to post comment");
         }
     };
 

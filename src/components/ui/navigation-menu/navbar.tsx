@@ -8,8 +8,8 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { NavigationMenu, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu/navigation";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { UserLogout } from "@/components/ui/navigation-menu/user-navigation";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ModeToggle } from "@/components/ui/layout/theme-toggle";
 
 export default function Component() {

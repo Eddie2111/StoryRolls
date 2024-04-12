@@ -1,7 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { GetCommentsByPost } from "@/utils/comments/get-all-comments";
 import { GetUserbyID } from "@/utils/users/getUser";
-import { BlogComments } from "@prisma/client";
 
 export async function CommentLists({ id }: { id: string }) {
     const body = await GetCommentsByPost(id || "0");
@@ -13,7 +12,8 @@ export async function CommentLists({ id }: { id: string }) {
             <div className="grid gap-6">
                 <h2 className="font-semibold text-xl">{commentLength} Comments</h2>
                 {body &&
-                    body?.data?.map(async (items: Partial<(BlogComments | undefined)[]>, index: number): any => {
+                    body?.data?.map(async (items: any, index: number): Promise<any> => {
+                        console.log(items, "one item here");
                         const splittedDate = items.createdAt.toDateString() || "Sun Jan 0 2020";
                         const userName = await GetUserbyID(items?.authorId || 0);
                         return (
