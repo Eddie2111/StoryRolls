@@ -1,10 +1,13 @@
-import type { Metadata, ResolvingMetadata } from "next";
+import type {
+  Metadata,
+  ResolvingMetadata,
+} from 'next';
 
-import { CommentLists } from "@/components/comment/comment-lists";
-import CommentBox from "@/components/comment/single-comment";
-import { getBlogByID } from "@/utils/blogs/getBlogs";
-import { GetUserbyID } from "@/utils/users/getUser";
-import { ReturnProps } from "@/types/BlogPost.d";
+import { CommentLists } from '@/components/comment/BlogComments/comment-lists';
+import CommentBox from '@/components/comment/BlogComments/single-comment';
+import { ReturnProps } from '@/types/BlogPost.d';
+import { getBlogByID } from '@/utils/blogs/getBlogs';
+import { GetUserbyID } from '@/utils/users/getUser';
 
 interface GetUserProps {
     data?: {

@@ -1,8 +1,9 @@
 "use client";
-import SessionCheck from "@/utils/users/sessionCheck";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+
+import { usePathname, useRouter } from "next/navigation";
+
+import SessionCheck from "@/utils/users/sessionCheck";
 
 interface ResponseProps {
     name?: string;
@@ -38,7 +39,7 @@ export default function RouteProtector(): JSX.Element {
             }
             return response;
         }
-        GetProps();
+        // GetProps();
     }, [pathname, router]);
     return <></>;
 }

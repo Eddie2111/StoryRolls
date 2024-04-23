@@ -1,8 +1,8 @@
 "use server";
 import { cookies } from "next/headers";
-import { User } from "@prisma/client";
-import Prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
+
+import Prisma from "@/lib/prisma";
 
 interface ReturnProps {
     message: string;
@@ -43,11 +43,12 @@ export async function GetUserbyID(id: number): Promise<ReturnProps> {
             };
         }
         return {
-            message: "Wrong email",
-            error: "Wrong email",
+            message: "Wrong ID",
+            error: "Wrong ID",
             data: null,
         };
-    } catch (error) {
+    } catch (error: unknown) {
+        console.log(error);
         return {
             message: "Error retriving user, try again?",
             error: "Error retriving user, connection failure.",

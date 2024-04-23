@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider     = "postgresql"
-  url          = env("DATABASE_URL")
+  url          = "postgres://avnadmin:AVNS_e3mM4ytSDdgoyM9-Ilz@pg-e5b96aa-new-project-11.a.aivencloud.com:25945/defaultdb?sslmode=require"
   relationMode = "prisma"
 }
 
