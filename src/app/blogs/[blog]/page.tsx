@@ -1,6 +1,6 @@
-// Return types
 import type { Metadata, ResolvingMetadata } from "next";
 
+import { CommentLists } from "@/components/comment/comment-lists";
 import CommentBox from "@/components/comment/single-comment";
 import { getBlogByID } from "@/utils/blogs/getBlogs";
 import { GetUserbyID } from "@/utils/users/getUser";
@@ -38,6 +38,7 @@ export default async function Page({ params }: { params: { blog: string } }) {
     const convertedBody = blogBody.toString() || "";
     const date = new Date(blog?.data?.createdAt || "");
     const splittedDate = date.toDateString() || "Sun Jan 0 2020";
+    console.log(params.blog, typeof params.blog);
     if (!blog) return <div>loading</div>;
     if (!blog.data) return <div>No Blogs Found</div>;
     return (
@@ -56,7 +57,8 @@ export default async function Page({ params }: { params: { blog: string } }) {
                 Keywords: <span className="text-bold text-black font-bold">{blog?.data?.tags || " "}</span>
             </div>
             <div className="mt-10">
-                <CommentBox />
+                <CommentBox id={params.blog || "0"} />
+                <CommentLists id={params.blog || "0"} />
             </div>
         </div>
     );

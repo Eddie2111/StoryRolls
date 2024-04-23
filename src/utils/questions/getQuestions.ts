@@ -1,8 +1,8 @@
 "use server";
 
-import Prisma from '@/lib/prisma';
-import { GetUserByCookie } from '@/utils/users/getUser';
-import { Question } from '@prisma/client';
+import { GetUserByCookie } from "@/utils/users/getUser";
+import { Question } from "@prisma/client";
+import Prisma from "@/lib/prisma";
 
 interface ReturnProps {
     success: boolean;

@@ -1,14 +1,17 @@
+import Link from "next/link";
+
 import {
-    DropdownMenuTrigger,
+    DropdownMenu,
+    DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuSeparator,
-    DropdownMenuContent,
-    DropdownMenu,
+    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { NavigationMenuLink, NavigationMenuList, NavigationMenu } from "@/components/ui/navigation-menu/navigation";
-import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
+import { NavigationMenu, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu/navigation";
+import { UserLogout } from "@/components/ui/navigation-menu/user-navigation";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ModeToggle } from "@/components/ui/layout/theme-toggle";
-import Link from "next/link";
+
 export default function Component() {
     return (
         <header className="flex flex-row h-20 w-full items-center px-4 md:px-6 justify-between bg-slate-800">
@@ -68,7 +71,7 @@ export default function Component() {
                         </DropdownMenuItem>
                         <DropdownMenuItem>Settings</DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>Logout</DropdownMenuItem>
+                        <UserLogout />
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
