@@ -1,15 +1,17 @@
 "use client";
+import React from "react";
+
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { createAccount } from "@/utils/users/accountCreate";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import React from "react";
-import { z } from "zod";
 
 const formSchema = z.object({
     name: z.string().min(3, "Name is too short").max(35, "Name is too long"),
@@ -41,7 +43,7 @@ export default function BlogForm() {
             if (response) {
                 toast("Account Created");
                 setInterval(() => {
-                    router.push("/my-account");
+                    router.push("/my-account/login");
                 }, 2000);
             }
             console.log(response);

@@ -1,15 +1,17 @@
 "use client";
+import React from "react";
+
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginUser } from "@/db/models/login-user";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import React from "react";
-import { z } from "zod";
 
 const formSchema = z.object({
     email: z.string().email().min(12, "Email is too short").max(35, "Email is too long").max(35),
@@ -29,11 +31,14 @@ export default function BlogForm() {
         try {
             const response = await LoginUser(values);
             console.log(response);
-            toast(response.message);
-            setInterval(() => {
+            if (response?.data) {
+                toast.success(response.message);
                 router.push("/my-account");
-            }, 2000);
+            } else {
+                toast.warning(response.message);
+            }
         } catch (err) {
+            toast.warning("Error logging in, try refreshing the page");
             console.log(err);
         }
     }

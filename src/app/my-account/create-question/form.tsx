@@ -1,14 +1,19 @@
 "use client";
+
+import React from "react";
+
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import CreateQuestion from "@/utils/questions/createQuestions";
+import { CreateQuestion, type ReturnProps } from "@/utils/questions/createQuestions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import Editor from "@/components/editor/jodit";
 import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import React from "react";
-import { z } from "zod";
+
 const formSchema = z.object({
     title: z.string().min(1, { message: "Title is required" }),
     body: z.string().min(1, { message: "Body is required" }).max(10000, { message: "Body must be less than 10000 characters" }),
@@ -16,6 +21,7 @@ const formSchema = z.object({
 });
 
 export default function QuestionForm() {
+    const router = useRouter();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -26,7 +32,13 @@ export default function QuestionForm() {
     });
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-            const response = await CreateQuestion(values);
+            const response: ReturnProps = await CreateQuestion(values);
+            if (response?.data) {
+                toast.success(response?.message);
+                router.push("/my-account/my-questions");
+            } else {
+                toast.warning(response?.message);
+            }
             console.log(response);
         } catch (err) {
             console.log(err);
