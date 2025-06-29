@@ -1,15 +1,10 @@
-import type {
-  Metadata,
-  ResolvingMetadata,
-} from 'next';
+import type { Metadata, ResolvingMetadata } from "next";
 
-import {
-  CommentLists,
-} from '@/components/comment/QuestionComments/comment-lists';
-import CommentBox from '@/components/comment/QuestionComments/single-comment';
-import { GetOneQuestion } from '@/utils/questions/getQuestions';
-import { GetUserbyID } from '@/utils/users/getUser';
-import { Question } from '@prisma/client';
+import { CommentLists } from "@/components/comment/QuestionComments/comment-lists";
+import CommentBox from "@/components/comment/QuestionComments/single-comment";
+import { GetOneQuestion } from "@/utils/questions/getQuestions";
+import { GetUserbyID } from "@/utils/users/getUser";
+import { Question } from "@prisma/client";
 
 interface ReturnProps {
     success: boolean;

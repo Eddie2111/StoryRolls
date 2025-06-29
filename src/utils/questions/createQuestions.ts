@@ -1,8 +1,8 @@
 "use server";
-import jwt from 'jsonwebtoken';
-import { cookies } from 'next/headers';
+import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
 
-import Prisma from '@/lib/prisma';
+import Prisma from "@/lib/prisma";
 
 export interface ReturnProps {
     message: string;

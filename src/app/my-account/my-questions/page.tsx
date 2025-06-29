@@ -1,13 +1,10 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { Badge } from '@/components/ui/badge';
-import {
-  Card,
-  CardContent,
-} from '@/components/ui/card';
-import { GetQuestionsByUser } from '@/utils/questions/getQuestions';
-import { GetUserbyID } from '@/utils/users/getUser';
-import { Question } from '@prisma/client';
+import { GetQuestionsByUser } from "@/utils/questions/getQuestions";
+import { Card, CardContent } from "@/components/ui/card";
+import { GetUserbyID } from "@/utils/users/getUser";
+import { Badge } from "@/components/ui/badge";
+import { Question } from "@prisma/client";
 
 interface ReturnProps {
     success: boolean;
@@ -32,7 +29,7 @@ export default async function Page() {
             <div className="container md:mx-10 mx-10">
                 <div className="grid grid-flow-row xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-1">
                     {questions &&
-                        questions?.data.map((items:Partial<Question>, index: number) => {
+                        questions?.data.map((items: Partial<Question>, index: number) => {
                             return (
                                 <CustomCard
                                     key={index}

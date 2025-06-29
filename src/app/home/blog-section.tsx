@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 
-import { TypographyLarge } from "@/components/typography/typography-large";
 import { TypographyTitle } from "@/components/typography/typography-title";
+import { TypographyLarge } from "@/components/typography/typography-large";
 import convertIdeas from "@/animations/convert-ideas.json";
 import manThinking from "@/animations/man-thinking.json";
 
